@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Expenses";
+}
+
+@model List<ExpenseCalculator.Models.Expense>
+
+<div class="text-center">
+    <h1 class="display-4">Expenses</h1>
+    <h1 class="display-4">TOPLAM: @Model.Sum( x=> x.Value ) TL</h1>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Value</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var expense in Model)
+            {
+                <tr>
+                    <td class="align-middle">@expense.ID</td>
+                    <td class="align-middle">@expense.Value TL</td>
+                    <td class="align-middle">@expense.Description</td>
+                    <td>
+                        <a asp-action="CreateEditExpense" asp-controller="Home" asp-route-id="@expense.ID" class="btn btn-secondary">Edit</a>
+                        <a asp-action="DeleteExpense" asp-controller="Home" asp-route-id="@expense.ID" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a asp-action="CreateEditExpense" asp-controller="Home" class="btn btn-primary float-end">Create/Edit Expense</a>
