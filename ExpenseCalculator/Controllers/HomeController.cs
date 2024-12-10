@@ -68,7 +68,7 @@ namespace ExpenseCalculator.Controllers
             }
             else
             {
-                _context.Expenses.Add(model);
+            _context.Expenses.Add(model);
             }
             _context.SaveChanges();
             return RedirectToAction("Expenses");
